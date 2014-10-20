@@ -128,7 +128,10 @@ def main():
     state = module.params['state']
     force = module.boolean(module.params['force'])
     pesize = module.params['pesize']
-    vgoptions = module.params['vg_options'].split()
+    try:
+        vgoptions = module.params['vg_options'].split()
+    except AttributeError:
+        vgoptions = []
 
     if module.params['pvs']:
         dev_string = ' '.join(module.params['pvs'])
